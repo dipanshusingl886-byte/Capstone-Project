@@ -1,3 +1,7 @@
+html{
+    scroll-behavior: smooth;
+}
+
 *{
     margin:0;
     padding:0;
@@ -260,6 +264,31 @@ nav ul li a{
     transform: translateY(-3px);
 }
 
+.signup{
+    background-color: #f1c40f;
+    color: black;
+}
+
+.dashboard-btn{
+    background-color: #2878ff;
+    color: white;
+}
+
+.btn:hover{
+    transform: scale(1.05);
+}
+
+.nav-btn-link {
+    text-decoration: none;
+    display: inline-block;
+}
+
+.nav-btn-link:hover {
+    color: inherit;
+}
+
+/* Hero Section */
+.hero{
 /* Newsletter */
 .newsletter {
     padding: 65px 20px;

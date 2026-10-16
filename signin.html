@@ -52,6 +52,12 @@
             margin-bottom: 120px;
         }
 
+        .logo a {
+            color: white;
+            text-decoration: none;
+            display: inline-block;
+        }
+
         .logo span {
             color: #8ec5ff;
         }
@@ -136,6 +142,23 @@
             cursor: pointer;
         }
 
+        .switch-auth {
+            text-align: center;
+            margin-top: 20px;
+            font-size: 14px;
+            color: #666;
+        }
+
+        .switch-auth a {
+            color: #2878ff;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .switch-auth a:hover {
+            text-decoration: underline;
+        }
+
         .message {
             font-size: 14px;
             margin-bottom: 15px;
@@ -173,7 +196,7 @@
     <div class="left">
 
         <div class="logo">
-            🏠 Rent<span>Ease</span>
+            <a href="login.html">🏠 Rent<span>Ease</span></a>
         </div>
 
         <h1>
@@ -220,6 +243,10 @@
             <button onclick="sendOTP()">
                 Login & Send OTP
             </button>
+
+            <p class="switch-auth">
+                Don't have an account? <a href="signup.html">Sign Up</a>
+            </p>
 
         </div>
 
@@ -268,6 +295,10 @@
             <button onclick="dashboard()">
                 Go to Dashboard
             </button>
+
+            <p class="switch-auth">
+                <a href="login.html">← Back to Home</a>
+            </p>
 
         </div>
 
@@ -356,9 +387,16 @@ function goBack() {
 /* DASHBOARD */
 
 function dashboard() {
-
-    alert("RentEase Dashboard Opening...");
-
+    let email = document.getElementById("email").value.trim();
+    if (email) {
+        try {
+            let stored = localStorage.getItem('rentease_user_profile');
+            let profile = stored ? JSON.parse(stored) : {};
+            profile.email = email;
+            localStorage.setItem('rentease_user_profile', JSON.stringify(profile));
+        } catch(e) {}
+    }
+    window.location.href = "dashboard.html";
 }
 </script>
 </body>
