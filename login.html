@@ -3,19 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Renties</title>
+    <title>RentEase - Rent Anything, Anytime</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <!-- Navbar -->
     <header>
         <nav>
-            <div class="logo"><a href="login.html" style="color: inherit; text-decoration: none;">Renties</a></div>
+            <div class="logo"><a href="login.html" style="color: inherit; text-decoration: none;">RentEase</a></div>
 
             <div class="nav-links">
                 <a href="login.html">Home</a>
                 <a href="dashboard.html">Rooms & PGs</a>
                 <a href="#properties">Explore</a>
+                <a href="#how-it-works">How It Works</a>
                 <a href="#about">About</a>
                 <a href="#contact">Contact</a>
 
@@ -25,158 +26,129 @@
             </div>
         </nav>
     </header>
-<nav>
-    <div class="logo">Renties</div>
 
-    <ul>
-        <li><a href="#">Home</a></li>
-        <li><a href="#">Categories</a></li>
-        <li><a href="#">Rentals</a></li>
-        <li><a href="#">Contact</a></li>
-    </ul>
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Rent Anything, Anytime</h1>
+            <p>Rooms, PGs, Apartments, Bikes, Cars, and More</p>
 
-    <a href="#" class="btn">Login</a>
-</nav>
-
-<section class="hero">
-    <div class="hero-content">
-        <h1>Rent Anything, Anytime</h1>
-        <p>Cars, Bikes, Houses, Electronics and More</p>
-
-<<<<<<< HEAD
-        <h1>Find Your Perfect Rental Home</h1>
-
-        <p>
-            Discover verified rental properties, apartments,
-            PGs, and houses at affordable prices.
-        </p>
-
-        <img src="https://images.unsplash.com/photo-1560518883-ce09059eeffa?w=1200" alt="Rental Home">
-
-        <br>
-
-       <h1><b>EXPLORE</b></h1>
-<h1>What do you want to rent ?</h1>
-<br>
-<h4>Everything you need is just a few clicks away.</h4>
-
+            <div class="search-box">
+                <input type="text" id="heroSearchInput" placeholder="Search rooms, PGs, locations...">
+                <button onclick="window.location.href='dashboard.html'">Search</button>
+            </div>
+        </div>
     </section>
-    <section class="bike" id="properties">
-        <div class="imagebike">
-            <img src="https://images.unsplash.com/photo-1558981806-ec527fa84c39" alt="">
-=======
-        <div class="search-box">
-            <input type="text" placeholder="Search rentals...">
-            <button>Search</button>
->>>>>>> origin/main
-        </div>
-    </div>
-</section>
 
-<<<<<<< HEAD
-    <!-- About Section -->
-    <section class="about" id="about">
-=======
-<section class="categories">
->>>>>>> origin/main
-
-    <h2 class="section-title">Popular Categories</h2>
-
-    <div class="category-container">
-
-        <div class="category-card">
-            <img src="https://images.unsplash.com/photo-1494976388531-d1058494cdd8" alt="">
-            <div class="category-content">
-                <h3>🚗 Cars</h3>
-                <p>Cars for daily trips and travel.</p>
-                <a href="#">Explore Cars →</a>
-            </div>
-        </div>
-
-        <div class="category-card">
-            <img src="https://images.unsplash.com/photo-1558981806-ec527fa84c39" alt="">
-            <div class="category-content">
-                <h3>🏍️ Bikes</h3>
-                <p>Affordable bikes and scooters.</p>
-                <a href="#">Explore Bikes →</a>
-            </div>
-        </div>
-
-        <div class="category-card">
-            <img src="https://images.unsplash.com/photo-1564013799919-ab600027ffc6" alt="">
-            <div class="category-content">
-                <h3>🏠 Houses</h3>
-                <p>Find apartments and houses.</p>
-                <a href="#">Explore Houses →</a>
-            </div>
-        </div>
-
-    </div>
-
-
-<!-- How Renties Works -->
-<section class="how-it-works">
-    <h2 class="section-title">How Renties Works</h2>
-    <p>Rent anything in just three simple steps!</p>
-
-    <div class="steps-container">
-        <div class="step-card">
-            <h1>🔍</h1>
-            <h3>1. Find Your Rental</h3>
-            <p>Explore cars, bikes, houses and more.</p>
-        </div>
-
-        <div class="step-card">
-            <h1>📅</h1>
-            <h3>2. Choose Your Dates</h3>
-            <p>Select your preferred rental period.</p>
-        </div>
-
-        <div class="step-card">
-            <h1>🔑</h1>
-            <h3>3. Enjoy Your Rental</h3>
-            <p>Complete your booking and enjoy!</p>
-        </div>
-    </div>
-</section>
-
-<!-- Become a Rental Partner -->
-<section class="partner-section">
-    <div class="partner-content">
-        <h2>Have Something to Rent?</h2>
-        <p>
-            Turn your unused car, bike or property into an opportunity.
-            Join Renties and connect with people looking to rent.
+    <!-- Featured Rental Homes Section -->
+    <section class="featured-homes" style="padding: 60px 7%; background: #ffffff; text-align: center;">
+        <h2 class="section-title" style="margin-bottom: 12px;">Find Your Perfect Rental Home</h2>
+        <p style="color: #64748b; font-size: 18px; max-width: 650px; margin: 0 auto 24px;">
+            Discover verified rental properties, apartments, PGs, and houses at affordable prices.
         </p>
-        <a href="#" class="partner-btn">Become a Partner →</a>
-    </div>
-</section>
+        <div style="margin-bottom: 30px;">
+            <a href="dashboard.html" class="btn" style="background: #2878ff; font-weight: 600; padding: 12px 28px; text-decoration: none; border-radius: 8px; display: inline-block;">Browse Rooms & PGs →</a>
+        </div>
+        <div style="max-width: 1000px; margin: 0 auto; overflow: hidden; border-radius: 16px; box-shadow: 0 10px 30px rgba(0,0,0,0.08);">
+            <img src="https://images.unsplash.com/photo-1560518883-ce09059eeffa?w=1200" alt="Rental Home" style="width: 100%; height: 380px; object-fit: cover; display: block;">
+        </div>
+    </section>
 
-<<<<<<< HEAD
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Eveniet maxime cumque enim ducimus doloribus velit,
-            blanditiis, consequatur ad earum, saepe aperiam ex eligendi? Optio placeat corporis corrupti, ducimus
-            obcaecati sint magni in. Repellendus, corporis nulla! Architecto debitis vel quod quaerat eveniet nostrum
-            doloribus quas, repudiandae deleniti asperiores ab laudantium totam.</p>
-            
+    <!-- Popular Categories -->
+    <section class="categories" id="properties">
+        <h2 class="section-title">Popular Categories</h2>
 
+        <div class="category-container">
+            <div class="category-card">
+                <img src="https://images.unsplash.com/photo-1564013799919-ab600027ffc6" alt="Houses & PGs">
+                <div class="category-content">
+                    <h3>🏠 Rooms & PGs</h3>
+                    <p>Verified single rooms, shared PGs, and flats.</p>
+                    <a href="dashboard.html" style="color: #2878ff; font-weight: 600; text-decoration: none;">Explore Rooms & PGs →</a>
+                </div>
+            </div>
+
+            <div class="category-card">
+                <img src="https://images.unsplash.com/photo-1494976388531-d1058494cdd8" alt="Cars">
+                <div class="category-content">
+                    <h3>🚗 Cars</h3>
+                    <p>Cars for daily trips, weekend getaways, and travel.</p>
+                    <a href="#properties" style="color: #4f46e5; font-weight: 600; text-decoration: none;">Explore Cars →</a>
+                </div>
+            </div>
+
+            <div class="category-card">
+                <img src="https://images.unsplash.com/photo-1558981806-ec527fa84c39" alt="Bikes">
+                <div class="category-content">
+                    <h3>🏍️ Bikes</h3>
+                    <p>Affordable bikes, scooters, and commuter rides.</p>
+                    <a href="#properties" style="color: #4f46e5; font-weight: 600; text-decoration: none;">Explore Bikes →</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- How RentEase Works -->
+    <section class="how-it-works" id="how-it-works">
+        <h2 class="section-title">How RentEase Works</h2>
+        <p style="text-align: center; color: #64748b; margin-top: -20px; margin-bottom: 40px; font-size: 16px;">Rent anything in just three simple steps!</p>
+
+        <div class="steps-container">
+            <div class="step-card">
+                <h1 style="font-size: 42px; margin-bottom: 12px;">🔍</h1>
+                <h3>1. Find Your Rental</h3>
+                <p>Explore verified rooms, PGs, houses, bikes, and cars with zero brokerage.</p>
+            </div>
+
+            <div class="step-card">
+                <h1 style="font-size: 42px; margin-bottom: 12px;">📅</h1>
+                <h3>2. Choose Your Dates</h3>
+                <p>Schedule an in-person visit or book instant slots at your convenience.</p>
+            </div>
+
+            <div class="step-card">
+                <h1 style="font-size: 42px; margin-bottom: 12px;">🔑</h1>
+                <h3>3. Enjoy Your Rental</h3>
+                <p>Move into your new space or drive away with hassle-free rental support.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Become a Rental Partner -->
+    <section class="partner-section">
+        <div class="partner-content">
+            <h2>Have Something to Rent?</h2>
+            <p>
+                Turn your empty room, flat, PG, or vehicle into an earning opportunity.
+                Join RentEase and connect with thousands of verified tenants.
+            </p>
+            <a href="signup.html" class="partner-btn">Become a Host / Partner →</a>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="about" id="about" style="padding: 70px 7%; background: #ffffff; text-align: center;">
+        <h2 class="section-title" style="margin-bottom: 16px;">About RentEase</h2>
+        <p style="max-width: 800px; margin: 0 auto; color: #475569; line-height: 1.8; font-size: 16px;">
+            RentEase is India's next-generation rental platform designed to bring transparency, affordability, and simplicity to finding accommodations and rentals. From verified co-ed PGs and private studios to personal mobility rentals, we eliminate hidden costs and connect verified hosts directly with renters.
+        </p>
+    </section>
+
+    <!-- Newsletter -->
+    <section class="newsletter">
+        <h2>Stay in the Loop 📩</h2>
+        <p>Get updates about new rental listings, PG vacancies, and special discounts.</p>
+
+        <form onsubmit="event.preventDefault(); alert('Thank you for subscribing to RentEase updates!');">
+            <input type="email" placeholder="Enter your email address" required>
+            <button type="submit">Subscribe</button>
+        </form>
     </section>
 
     <!-- Footer -->
-    <footer id="contact">
-        <p>&copy; 2026 Renties. All Rights Reserved.</p>
+    <footer id="contact" style="background: #1e293b; color: #94a3b8; padding: 40px 7%; text-align: center;">
+        <p>&copy; 2026 RentEase. All Rights Reserved. | Designed for effortless rentals.</p>
     </footer>
-=======
-<!-- Newsletter -->
-<section class="newsletter">
-    <h2>Stay in the Loop 📩</h2>
-    <p>Get updates about new rentals and exciting offers.</p>
-
-    <form>
-        <input type="email" placeholder="Enter your email address" required>
-        <button type="submit">Subscribe</button>
-    </form>
-</section>
->>>>>>> origin/main
 
     <script src="script.js"></script>
 </body>
