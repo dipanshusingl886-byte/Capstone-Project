@@ -349,6 +349,91 @@
             margin-top: 2px;
         }
 
+        /* Hero Spotlights / Quick Photo Highlights */
+        .hero-left {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            max-width: 650px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-spotlights {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+
+        .spotlight-badge {
+            font-size: 12px;
+            font-weight: 700;
+            background: rgba(255, 255, 255, 0.22);
+            backdrop-filter: blur(6px);
+            padding: 5px 12px;
+            border-radius: 999px;
+            letter-spacing: 0.3px;
+            color: #ffffff;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            white-space: nowrap;
+        }
+
+        .spotlight-cards {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .spotlight-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            background: rgba(255, 255, 255, 0.16);
+            backdrop-filter: blur(8px);
+            border: 1px solid rgba(255, 255, 255, 0.28);
+            border-radius: 12px;
+            padding: 6px 14px 6px 6px;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .spotlight-item:hover {
+            background: rgba(255, 255, 255, 0.28);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 18px rgba(0, 0, 0, 0.15);
+        }
+
+        .spotlight-thumb {
+            width: 44px;
+            height: 44px;
+            border-radius: 8px;
+            object-fit: cover;
+            border: 1.5px solid rgba(255, 255, 255, 0.8);
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+        }
+
+        .spotlight-info {
+            display: flex;
+            flex-direction: column;
+            text-align: left;
+            line-height: 1.25;
+        }
+
+        .spotlight-title {
+            font-size: 13px;
+            font-weight: 700;
+            color: #ffffff;
+            white-space: nowrap;
+        }
+
+        .spotlight-sub {
+            font-size: 11px;
+            color: rgba(255, 255, 255, 0.9);
+            font-weight: 500;
+            white-space: nowrap;
+        }
+
         /* Tab Views */
         .tab-content {
             display: none;
@@ -922,6 +1007,7 @@
             display: flex;
             align-items: center;
             gap: 10px;
+            flex-wrap: wrap;
         }
 
         .avatar-option {
@@ -1098,8 +1184,42 @@
             object-fit: cover;
         }
 
+        .modal-gallery-thumbs {
+            display: flex;
+            gap: 10px;
+            padding: 14px 28px 0 28px;
+            overflow-x: auto;
+            align-items: center;
+        }
+
+        .modal-gallery-thumb {
+            width: 72px;
+            height: 52px;
+            border-radius: var(--radius-sm);
+            object-fit: cover;
+            cursor: pointer;
+            border: 2px solid transparent;
+            transition: var(--transition);
+            box-shadow: var(--shadow-sm);
+            flex-shrink: 0;
+            opacity: 0.72;
+        }
+
+        .modal-gallery-thumb:hover {
+            opacity: 1;
+            transform: translateY(-2px);
+            border-color: var(--primary);
+        }
+
+        .modal-gallery-thumb.active {
+            opacity: 1;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(40, 120, 255, 0.3);
+            transform: scale(1.02);
+        }
+
         .modal-content {
-            padding: 28px;
+            padding: 24px 28px 28px 28px;
         }
 
         .modal-header-row {
@@ -1246,6 +1366,13 @@
             .schedule-form {
                 grid-template-columns: 1fr;
             }
+            .spotlight-cards {
+                flex-direction: column;
+                width: 100%;
+            }
+            .spotlight-item {
+                width: 100%;
+            }
         }
     </style>
 </head>
@@ -1275,7 +1402,7 @@
             <div class="nav-user">
                 <button class="theme-toggle-btn" id="themeToggleBtn" onclick="toggleTheme()" title="Toggle Dark/Light Mode">🌙</button>
                 <div class="user-chip" onclick="switchTab('profile')">
-                    <img id="navAvatarImg" src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?auto=format&fit=crop&w=150&q=80" alt="Avatar" class="user-avatar">
+                    <img id="navAvatarImg" src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?auto=format&fit=crop&w=150&q=80" onerror="this.src='https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?auto=format&fit=crop&w=150&q=80'" alt="Avatar" class="user-avatar">
                     <div class="user-meta">
                         <div class="user-name" id="navUserName">Alex Sharma</div>
                         <div class="user-status" id="navUserStatus">Verified Tenant</div>
@@ -1291,13 +1418,37 @@
 
         <!-- Welcome Hero Section -->
         <section class="welcome-hero">
-            <div class="hero-text">
-                <h1 id="heroGreeting">Welcome back, Alex! 👋</h1>
-                <p>Browse verified rooms, single studios, and executive PGs. Easily schedule property visits or customize your tenant profile.</p>
+            <div class="hero-left">
+                <div class="hero-text">
+                    <h1 id="heroGreeting">Welcome back, Alex! 👋</h1>
+                    <p>Browse verified rooms, single studios, and executive PGs. Easily schedule property visits or customize your tenant profile.</p>
+                </div>
+
+                <!-- Little Photo Highlights (Trending / Popular Units) -->
+                <div class="hero-spotlights">
+                    <span class="spotlight-badge">🔥 Hot Deals:</span>
+                    <div class="spotlight-cards">
+                        <div class="spotlight-item" onclick="openDetailsModal(1)" title="View Koramangala PG">
+                            <img src="https://images.unsplash.com/photo-1522771739844-6a9f6d5f14af?auto=format&fit=crop&w=150&q=80" alt="Koramangala PG" class="spotlight-thumb">
+                            <div class="spotlight-info">
+                                <span class="spotlight-title">Koramangala Luxury PG</span>
+                                <span class="spotlight-sub">₹9,500/mo • ⭐ 4.8</span>
+                            </div>
+                        </div>
+                        <div class="spotlight-item" onclick="openDetailsModal(7)" title="View Indiranagar Studio">
+                            <img src="https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&w=150&q=80" alt="Indiranagar Studio" class="spotlight-thumb">
+                            <div class="spotlight-info">
+                                <span class="spotlight-title">Indiranagar Studio</span>
+                                <span class="spotlight-sub">₹13,500/mo • ⭐ 4.9</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
+
             <div class="hero-stats">
                 <div class="stat-card">
-                    <div class="stat-value" id="totalListingsCount">6</div>
+                    <div class="stat-value" id="totalListingsCount">8</div>
                     <div class="stat-label">Verified Units</div>
                 </div>
                 <div class="stat-card">
@@ -1406,10 +1557,12 @@
 
                             <div class="avatar-options">
                                 <span style="font-size: 13px; font-weight: 700; color: var(--slate-600); margin-right: 4px;">Choose Avatar:</span>
-                                <img src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?auto=format&fit=crop&w=150&q=80" class="avatar-option selected" onclick="selectAvatar(this, this.src)">
-                                <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=150&q=80" class="avatar-option" onclick="selectAvatar(this, this.src)">
-                                <img src="https://images.unsplash.com/photo-1570295999919-56ceb5ecca61?auto=format&fit=crop&w=150&q=80" class="avatar-option" onclick="selectAvatar(this, this.src)">
-                                <img src="https://images.unsplash.com/photo-1580489944761-15a19d654956?auto=format&fit=crop&w=150&q=80" class="avatar-option" onclick="selectAvatar(this, this.src)">
+                                <img src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?auto=format&fit=crop&w=150&q=80" class="avatar-option selected" onclick="selectAvatar(this, this.src)" alt="Avatar 1">
+                                <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=150&q=80" class="avatar-option" onclick="selectAvatar(this, this.src)" alt="Avatar 2">
+                                <img src="https://images.unsplash.com/photo-1570295999919-56ceb5ecca61?auto=format&fit=crop&w=150&q=80" class="avatar-option" onclick="selectAvatar(this, this.src)" alt="Avatar 3">
+                                <img src="https://images.unsplash.com/photo-1580489944761-15a19d654956?auto=format&fit=crop&w=150&q=80" class="avatar-option" onclick="selectAvatar(this, this.src)" alt="Avatar 4">
+                                <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=150&q=80" class="avatar-option" onclick="selectAvatar(this, this.src)" alt="Avatar 5">
+                                <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=150&q=80" class="avatar-option" onclick="selectAvatar(this, this.src)" alt="Avatar 6">
                             </div>
                         </div>
 
@@ -1491,6 +1644,8 @@
             <div class="modal-img-wrap">
                 <img id="modalImg" src="" alt="Property Preview">
             </div>
+            <!-- Photo Gallery Thumbnails -->
+            <div class="modal-gallery-thumbs" id="modalGalleryThumbs"></div>
             <div class="modal-content">
                 <div class="modal-header-row">
                     <div>
@@ -1583,6 +1738,11 @@
                 hostName: "Ramesh Sharma (Host)",
                 hostPhone: "+91 98765 43210",
                 image: "https://images.unsplash.com/photo-1522771739844-6a9f6d5f14af?auto=format&fit=crop&w=800&q=80",
+                gallery: [
+                    "https://images.unsplash.com/photo-1522771739844-6a9f6d5f14af?auto=format&fit=crop&w=800&q=80",
+                    "https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?auto=format&fit=crop&w=800&q=80",
+                    "https://images.unsplash.com/photo-1584622650111-993a426fbf0a?auto=format&fit=crop&w=800&q=80"
+                ],
                 amenities: ["WiFi", "AC", "Food Included", "Attached Bath", "Power Backup", "No Brokerage"],
                 description: "Modern, fully furnished co-ed PG with home-cooked 3-time meals, daily room cleaning, high-speed fiber internet, and 24/7 security surveillance."
             },
@@ -1600,6 +1760,11 @@
                 hostName: "Karthik Gowda (Owner)",
                 hostPhone: "+91 98765 43210",
                 image: "https://images.unsplash.com/photo-1595526114035-0d45ed16cfbf?auto=format&fit=crop&w=800&q=80",
+                gallery: [
+                    "https://images.unsplash.com/photo-1595526114035-0d45ed16cfbf?auto=format&fit=crop&w=800&q=80",
+                    "https://images.unsplash.com/photo-1540518614846-7ede433c4ef3?auto=format&fit=crop&w=800&q=80",
+                    "https://images.unsplash.com/photo-1584622650111-993a426fbf0a?auto=format&fit=crop&w=800&q=80"
+                ],
                 amenities: ["WiFi", "Food Included", "Power Backup", "No Brokerage"],
                 description: "Spacious twin and triple sharing rooms for students and working professionals. Located walking distance from tech hubs, with laundry and meal facilities."
             },
@@ -1617,6 +1782,11 @@
                 hostName: "Sunita Hegde (Superhost)",
                 hostPhone: "+91 98765 43210",
                 image: "https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?auto=format&fit=crop&w=800&q=80",
+                gallery: [
+                    "https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?auto=format&fit=crop&w=800&q=80",
+                    "https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?auto=format&fit=crop&w=800&q=80",
+                    "https://images.unsplash.com/photo-1584622650111-993a426fbf0a?auto=format&fit=crop&w=800&q=80"
+                ],
                 amenities: ["WiFi", "AC", "Food Included", "Attached Bath", "Power Backup"],
                 description: "Safe and secure luxury accommodation for women with biometric entry, North & South Indian meals, gym access, and balcony rooms."
             },
@@ -1634,6 +1804,11 @@
                 hostName: "Anand Verma (Owner)",
                 hostPhone: "+91 98765 43210",
                 image: "https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?auto=format&fit=crop&w=800&q=80",
+                gallery: [
+                    "https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?auto=format&fit=crop&w=800&q=80",
+                    "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&w=800&q=80",
+                    "https://images.unsplash.com/photo-1584622650111-993a426fbf0a?auto=format&fit=crop&w=800&q=80"
+                ],
                 amenities: ["WiFi", "AC", "Attached Bath", "Power Backup", "No Brokerage"],
                 description: "Independent 1 BHK flat featuring modular kitchen, refrigerator, washing machine, living area with smart TV, and private covered car parking."
             },
@@ -1651,6 +1826,11 @@
                 hostName: "Deepak Kumar (Host)",
                 hostPhone: "+91 98765 43210",
                 image: "https://images.unsplash.com/photo-1540518614846-7ede433c4ef3?auto=format&fit=crop&w=800&q=80",
+                gallery: [
+                    "https://images.unsplash.com/photo-1540518614846-7ede433c4ef3?auto=format&fit=crop&w=800&q=80",
+                    "https://images.unsplash.com/photo-1598928506311-c55ded91a20c?auto=format&fit=crop&w=800&q=80",
+                    "https://images.unsplash.com/photo-1584622650111-993a426fbf0a?auto=format&fit=crop&w=800&q=80"
+                ],
                 amenities: ["WiFi", "Attached Bath", "No Brokerage"],
                 description: "Quiet private single room with attached bath, wardrobe, and study table. Ideal for working professionals seeking privacy near silk board and metro."
             },
@@ -1668,6 +1848,11 @@
                 hostName: "Pooja Reddy (Manager)",
                 hostPhone: "+91 98765 43210",
                 image: "https://images.unsplash.com/photo-1598928506311-c55ded91a20c?auto=format&fit=crop&w=800&q=80",
+                gallery: [
+                    "https://images.unsplash.com/photo-1598928506311-c55ded91a20c?auto=format&fit=crop&w=800&q=80",
+                    "https://images.unsplash.com/photo-1522771739844-6a9f6d5f14af?auto=format&fit=crop&w=800&q=80",
+                    "https://images.unsplash.com/photo-1584622650111-993a426fbf0a?auto=format&fit=crop&w=800&q=80"
+                ],
                 amenities: ["WiFi", "AC", "Attached Bath", "Power Backup", "No Brokerage"],
                 description: "Premium single occupancy room in a vibrant co-living community. Includes dedicated workspace, recreation lounge with pool table, and high-speed Wi-Fi."
             },
@@ -1685,6 +1870,11 @@
                 hostName: "Vikram Malhotra (Superhost)",
                 hostPhone: "+91 98765 43210",
                 image: "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&w=800&q=80",
+                gallery: [
+                    "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&w=800&q=80",
+                    "https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?auto=format&fit=crop&w=800&q=80",
+                    "https://images.unsplash.com/photo-1584622650111-993a426fbf0a?auto=format&fit=crop&w=800&q=80"
+                ],
                 amenities: ["WiFi", "AC", "Attached Bath", "Power Backup", "No Brokerage"],
                 description: "Chic modern studio apartment with balcony view, pantry counter, smart TV, high-speed WiFi, and 24/7 security in the heart of Indiranagar."
             },
@@ -1702,6 +1892,11 @@
                 hostName: "Manoj Swamy (Host)",
                 hostPhone: "+91 98765 43210",
                 image: "https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?auto=format&fit=crop&w=800&q=80",
+                gallery: [
+                    "https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?auto=format&fit=crop&w=800&q=80",
+                    "https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?auto=format&fit=crop&w=800&q=80",
+                    "https://images.unsplash.com/photo-1584622650111-993a426fbf0a?auto=format&fit=crop&w=800&q=80"
+                ],
                 amenities: ["WiFi", "AC", "Food Included", "Attached Bath", "Power Backup"],
                 description: "Executive co-living suites near major tech parks. 3 delicious meals served daily, gym, laundry, indoor games, and blazing fast fiber Wi-Fi."
             }
@@ -1983,6 +2178,15 @@
             document.getElementById('modalDesc').innerText = property.description;
             document.getElementById('modalType').innerText = property.type;
 
+            // Populate Gallery Thumbnails (Little Photos)
+            const galleryContainer = document.getElementById('modalGalleryThumbs');
+            if (galleryContainer) {
+                const photos = property.gallery && property.gallery.length > 0 ? property.gallery : [property.image];
+                galleryContainer.innerHTML = photos.map((imgUrl, i) => `
+                    <img src="${imgUrl}" alt="Preview ${i + 1}" class="modal-gallery-thumb ${imgUrl === property.image ? 'active' : ''}" onclick="selectModalImage(this, '${imgUrl}')">
+                `).join('');
+            }
+
             // Populate Host Details & Direct Contact
             const hostNameEl = document.getElementById('modalHostName');
             if (hostNameEl) hostNameEl.innerText = property.hostName || "Verified Host";
@@ -1999,6 +2203,13 @@
             }
 
             document.getElementById('propertyModal').classList.add('active');
+        }
+
+        // Switch main image when thumbnail is clicked
+        function selectModalImage(thumbEl, src) {
+            document.getElementById('modalImg').src = src;
+            document.querySelectorAll('.modal-gallery-thumb').forEach(t => t.classList.remove('active'));
+            thumbEl.classList.add('active');
         }
 
         function openScheduleModal(id) {
@@ -2059,10 +2270,11 @@
         }
 
         function updateUIFromProfile(profile) {
-            const firstName = profile.fullName.split(' ')[0] || "User";
-            document.getElementById('navUserName').innerText = profile.fullName;
-            document.getElementById('navUserStatus').innerText = profile.role;
-            document.getElementById('navAvatarImg').src = profile.avatar;
+            const firstName = (profile.fullName && profile.fullName.trim()) ? profile.fullName.trim().split(' ')[0] : "Alex";
+            document.getElementById('navUserName').innerText = profile.fullName || "Alex Sharma";
+            document.getElementById('navUserStatus').innerText = profile.role || "Verified Tenant";
+            const avatarUrl = profile.avatar || "https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?auto=format&fit=crop&w=150&q=80";
+            document.getElementById('navAvatarImg').src = avatarUrl;
             document.getElementById('heroGreeting').innerText = `Welcome back, ${firstName}! 👋`;
         }
 
